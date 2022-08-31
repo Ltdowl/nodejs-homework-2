@@ -1,18 +1,13 @@
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const { basedir } = global;
-const { User, joiSchemas } = require(`${basedir}/models/users`);
+const { User } = require(`${basedir}/models/users`);
 const createError = require(`${basedir}/helpers/createError`);
 
 const { SECRET_KEY } = process.env;
 
 const login = async (req, res, next) => {
   try {
-    const { error } = joiSchemas.login.validate(req.body);
-    if (error) {
-      throw createError(400, error.message);
-    }
-
     const { email, password } = req.body;
     const user = await User.findOne({ email });
     if (!user) {
