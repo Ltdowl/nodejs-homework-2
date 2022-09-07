@@ -5,7 +5,7 @@ const add = async (req, res, next) => {
   try {
     const { error } = joiShemas.add.validate(req.body);
     if (error) {
-      throw createError(400, "Missing required name field");
+      throw createError(400, error.message);
     }
     const { id: owner } = req.user;
     const result = await Contact.create({ ...req.body, owner });
