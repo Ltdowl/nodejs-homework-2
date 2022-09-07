@@ -9,7 +9,7 @@ const getAll = async (req, res, next) => {
     const result = await Contact.find(
       { owner },
       "name email phone favorite owner",
-      { skip, limit: Number(limit) }
+      { skip, limit: +limit }
     ).populate("owner", "email");
     res.json(result);
   } catch (error) {
