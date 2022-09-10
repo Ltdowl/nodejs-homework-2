@@ -16,7 +16,7 @@ const verifyEmail = async (req, res) => {
     verificationToken: null,
   });
 
-  res.status(200)({ message: "Verification successful" });
+  res.status(200).json({ status: 200, message: "Verification successful!" });
 };
 
 module.exports = verifyEmail;
